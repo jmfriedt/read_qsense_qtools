@@ -1,6 +1,6 @@
 # Reading QSense's QTools QSD file from GNU/Octave
 
-Reverse engineering QSD file format to read time, frequency and dampling
+Reverse engineering QSD file format to read time, frequency and damping
 and display in GNU/Octave. Results seem consistent with the screenshot
 grabbed during acquisition by the proprietary QTools software.
 
