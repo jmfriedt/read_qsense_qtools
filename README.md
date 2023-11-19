@@ -1,4 +1,4 @@
-# Reading QSense's QSofs QSD file from GNU/Octave
+# Reading Q-Sense's QSofs QSD file from GNU/Octave
 
 Reverse engineering QSD file format to read time, frequency and damping
 and display in GNU/Octave. Results seem consistent with the screenshot
