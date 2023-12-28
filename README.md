@@ -21,4 +21,4 @@ the overtones, i.e., the shifts in frequency goes as 1:3:5:7... for the fundamen
 and the 3rd, 5th, and 7th overtones and so on." but has been confirmed by Biolin/Quantum Design
 support.
 
-
+Verified with <a href="https://www.biolinscientific.com/qsense/instrument/qsense-explorer">single-sensor</a> and <a href="https://www.biolinscientific.com/qsense/instruments/qsense-analyzer">quad-sensor</a> instrument records.
