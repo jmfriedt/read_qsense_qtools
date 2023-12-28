@@ -36,4 +36,19 @@ the overtones, i.e., the shifts in frequency goes as 1:3:5:7... for the fundamen
 and the 3rd, 5th, and 7th overtones and so on." but has been confirmed by Biolin/Quantum Design
 support.
 
-Verified with <a href="https://www.biolinscientific.com/qsense/instrument/qsense-explorer">single-sensor</a> and <a href="https://www.biolinscientific.com/qsense/instruments/qsense-analyzer">quad-sensor</a> instrument records.
+## Python port
+
+I have no clue about Python programming, so the initial guess was to ask PizzaGPT for a
+draft of Python syntax by feeding the original Octave code, and debug step by step the 
+proposed output program (which of course was not even syntaxically correct, but at least 
+provided some of the useful functions) until the same intermediate variables would match
+those of the Octave code. The <a href="read_qsd.py">resulting program</a> 
+might be far from optimal and depends on Numpy to closely match Octave array handling, 
+but at least provides a functional demonstration on available sample files. Use at your 
+own risks!
+
+Execute with ``python3 read_qsd.py`` from a GNU/Linux terminal, tested with Python 3.11.6.
+
+<img src="read_qsd_py.png">
+
+All decoding software verified with <a href="https://www.biolinscientific.com/qsense/instrument/qsense-explorer">single-sensor</a> and <a href="https://www.biolinscientific.com/qsense/instruments/qsense-analyzer">quad-sensor</a> instrument records.
