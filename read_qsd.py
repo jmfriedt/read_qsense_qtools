@@ -93,11 +93,11 @@ def read_qsd(filename):
 # for demo only: remove for a "useful" application
 plt.subplot(211)
 for k in range(0,min(np.shape(fre))):
-    plt.plot(fre[k,:reslen[k]]-fre[k][0])
+    plt.plot(tim[k,:reslen[k]],fre[k,:reslen[k]]-fre[k][0])
 plt.ylabel('freq. variation (Hz)')
 plt.subplot(212)
 for k in range(0,min(np.shape(dis))):
-    plt.plot(dis[k,:reslen[k]]-dis[k][0])
+    plt.plot(tim[k,:reslen[k]],dis[k,:reslen[k]]-dis[k][0])
 plt.xlabel('time (s)')
 plt.ylabel('dissipation (no unit)')
 plt.show()
