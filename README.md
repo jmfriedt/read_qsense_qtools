@@ -4,6 +4,21 @@ Reverse engineering QSD file format to read time, frequency and damping
 and display in GNU/Octave. Results seem consistent with the screenshot
 grabbed during acquisition by the proprietary QSoft 401 software.
 
+## Running
+
+The ``goall.m`` script is designed to be executed with GNU/Octave (tested
+with version 8.4.0 under GNU/Linux) but should run quite immediately with
+Matlab (removing ``graphics_toolkit('gnuplot');`` should be all that is needed,
+not tested) and demonstates the use of ``read_qsd.m`` for reading all QSD files
+in the current directory.
+
+Since Octave requires all lines and columns of the returned matrices to be the 
+same size, some columns of the matrices with time, frequency or damping records
+might end up with trailing 0s. Use the fourth argument "dataset length" to only
+analyze the relevant values and omit the trailing 0s in each column.
+
+## Result
+
 GNU/Octave output:
 
 <img src="goall.png">
