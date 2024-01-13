@@ -18,11 +18,20 @@ def read_qsd(filename):
     
     pointer += 4
     n = struct.unpack('<I', d[pointer:pointer+4])[0]
-    pointer += 1 + (4 * nsensors) + 3
+    pointer += 4     # skip length information
+    pointer += (4 * nsensors)
     if d[pointer] != 0xee:
         raise Exception("Invalid value: != 0xee")
-    
-    pointer += 40
+    pointer += 16
+    newn = struct.unpack('<I', d[pointer:pointer+4])[0]
+    if newn != n+1:
+        raise Exception("Invalid size repetition")
+    pointer += 4     # skip length information
+    if d[pointer] == 0x02:
+        pointer += 8 # added to validate BSA dataset
+    if d[pointer] != 0x01:
+        raise Exception("Invalid value: != 0x01")
+    pointer += 12
     if d[pointer] != 0x0b:
         raise Exception("Invalid value: != 0x0b")
     

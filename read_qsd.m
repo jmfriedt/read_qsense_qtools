@@ -24,19 +24,33 @@ function [tim,fre,dis,len,ns]=read_qsd(filename)
   nsensors=d(pointer);      % 1 or 4 depending on single or quad QSense system
   ns=nsensors;
   if ((nsensors!=1) && (nsensors!=4))
-     error("Invalid number of sensors, aborting\n");
+     error("Invalid number of sensors (should be 1 or 4), aborting\n");
   end
   pointer=pointer+4;
   n=d(pointer)+d(pointer+1)*256+d(pointer+2)*256*256+d(pointer+3)*256*256*256;
   len=n;
-% 0000000000e4070100 04 000000 f604 00000700000007000000070000000700 0000 ee0701...
-% 0000000000e4070100 01 000000 0126 00000400 0000                         ee0701...
-%                                                                         ^^
-  pointer=pointer+1+(4*nsensors)+3; 
+  pointer=pointer+4;        % skip length information
+% 0000e4070100 04 000000 f6040000 07000000070000000700000007000000 ee0701 00090000000208000000000000 f704000002000000000000000100000000000000f6040000 0b 00f7040000b9
+% 0000e4070100 01 000000 01260000 04000000                         ee0701 00090000000208000000000000 022600000200000000000000010000000000000001260000 0b 00022600001c
+% 0000e4070100 01 000000 8d580000 07000000                         ee0701 00090000000208000000000000 8e580000                01000000000000008e580000 0b 008e5800001a
+%              ns          len                                     ^^                                ^^
+  pointer=pointer+(4*nsensors);  
   if (d(pointer) != 0xee)
      error("Invalid value: != 0xee\n");
   end
-  pointer=pointer+40;
+  pointer=pointer+16;  
+  newn=d(pointer)+d(pointer+1)*256+d(pointer+2)*256*256+d(pointer+3)*256*256*256;
+  if (newn!=len+1) 
+     error("Invalid size repetition\n");
+  end
+  pointer=pointer+4;    % skip size repetition 
+  if (d(pointer)==2)    % added to validate BSA dataset
+      pointer=pointer+8;
+  end
+  if (d(pointer) != 0x01)
+     error("Invalid value: != 0x01\n");
+  end
+  pointer=pointer+12;
   if (d(pointer) != 0x0b)
      error("Invalid value: != 0x0b\n");
   end
