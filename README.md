@@ -4,6 +4,9 @@ Reverse engineering QSD file format to read time, frequency and damping
 and display in GNU/Octave. Results seem consistent with the screenshot
 grabbed during acquisition by the proprietary QSoft 401 software.
 
+These functions are used in https://github.com/b-pardi whose operation is described in 
+detail in [![DOI](https://joss.theoj.org/papers/10.21105/joss.06831/status.svg)](https://doi.org/10.21105/joss.06831)
+
 ## Running
 
 The ``goall.m`` script is designed to be executed with GNU/Octave (tested
